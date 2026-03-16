@@ -210,9 +210,9 @@
       // ── CONFIG ──
       const params = new URLSearchParams(window.location.search);
       const birthParam = params.get("birth");
-      const BIRTH = birthParam ? new Date(birthParam) : new Date(1981, 11, 3);
+      const BIRTH = birthParam ? new Date(birthParam) : new Date(1971, 5, 28);
       const AGE_END = parseInt(params.get("end")) || 80;
-      const AGE_FROM = parseInt(params.get("from")) || 40;
+      const AGE_FROM = parseInt(params.get("from")) || 50;
 
       function updateURL() {
         const p = new URLSearchParams();

@@ -14,30 +14,30 @@ Everything is configured via the URL, so you can bookmark your mortality or shar
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `birth` | `1981-12-03` | Your birthday in `YYYY-MM-DD` format |
+| `birth` | `1971-06-28` | Your birthday in `YYYY-MM-DD` format |
 | `end` | `80` | The age you're betting you'll reach |
-| `from` | `40` | Starting age for the "midlife crisis" view |
+| `from` | `50` | Starting age for the "midlife crisis" view |
 | `mode` | `whole` | Active view: `whole`, `from40`, `decade`, or `birthday` |
 
 ### Examples
 
 ```
-# Default (born Dec 3 1981, hoping for 80)
+# Default (born June 28 1971, hoping for 80)
 index.html
 
 # Born in 1990, aiming for 100 (ambitious)
 index.html?birth=1990-05-15&end=100&from=30&mode=whole
 
 # Just show me this decade, I can't handle the big picture
-index.html?birth=1981-12-03&end=80&from=40&mode=decade
+index.html?birth=1971-06-28&end=80&from=50&mode=decade
 ```
 
 ## Views
 
 - **0 -> 80** - Your whole life. All of it. Every single day. You're welcome.
-- **40 -> 80** - From a configurable starting age to the end. For when the first half is just backstory.
-- **40's** - Your current decade. A more digestible existential window.
-- **44 -> 45** - Current age to next birthday. A countdown to cake, basically.
+- **50 -> 80** - From a configurable starting age to the end. For when the first half is just backstory.
+- **50's** - Your current decade. A more digestible existential window.
+- **54 -> 55** - Current age to next birthday. A countdown to cake, basically.
 
 ## License
 
