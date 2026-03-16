@@ -1,4 +1,6 @@
-# mori
+# Mori
+
+![Mori](github.png)
 
 Nothing like a grid of tiny squares to remind you that time is, in fact, not on your side. Momento Mori is an end-of-life visualizer that shows every day from birth to your (optimistic) expiry date as a GitHub-style activity graph. Green blocks are days you've used up. Dark blocks are what's left. The orange dot is you, right now, wondering where the time went.
 
