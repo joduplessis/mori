@@ -4,12 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Momento Mori" />
-    <meta name="theme-color" content="#0d1117" />
+    <meta name="theme-color" content="#F6F1EB" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
     <title>Momento Mori</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --bg: #F6F1EB;
+        --bg-card: #FFFCF8;
+        --ink: #2C2520;
+        --ink-soft: #7A6E64;
+        --ink-faint: #B8AFA6;
+        --accent: #D4622B;
+        --accent-soft: #F0DDD0;
+        --green: #4A7C59;
+        --green-soft: #DDE8D8;
+        --red: #B84233;
+        --red-soft: #F2DAD5;
+        --border: #E4DDD5;
+        --shadow: 0 1px 3px rgba(44,37,32,0.06), 0 4px 12px rgba(44,37,32,0.04);
+        --shadow-lg: 0 2px 8px rgba(44,37,32,0.08), 0 12px 32px rgba(44,37,32,0.06);
+        --radius: 10px;
+      }
+
       * {
         margin: 0;
         padding: 0;
@@ -20,11 +40,10 @@
       body {
         height: 100vh;
         overflow: hidden;
-        background: #0d1117;
-        color: #c9d1d9;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-          sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'IBM Plex Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
       }
 
       body {
@@ -45,39 +64,42 @@
 
       .toggle {
         display: flex;
-        background: #161b22;
-        border-radius: 6px;
+        background: var(--bg-card);
+        border-radius: var(--radius);
         overflow: hidden;
-        border: 1px solid #30363d;
+        border: 1px solid var(--border);
         flex-shrink: 0;
+        box-shadow: var(--shadow);
       }
 
       .toggle button {
         background: none;
         border: none;
-        color: #8b949e;
+        color: var(--ink-soft);
         font-size: 11px;
-        padding: 5px 12px;
+        padding: 6px 14px;
         cursor: pointer;
-        font-family: inherit;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 500;
         transition: all 0.2s;
+        letter-spacing: -0.2px;
       }
 
       .toggle button.active {
-        background: #238636;
+        background: var(--accent);
         color: #fff;
       }
 
       .toggle button:hover:not(.active) {
-        color: #c9d1d9;
-        background: #1c2128;
+        color: var(--ink);
+        background: var(--accent-soft);
       }
 
       .stats {
         display: flex;
-        gap: 24px;
+        gap: 20px;
         font-size: 12px;
-        color: #484f58;
+        color: var(--ink-faint);
       }
 
       .stat {
@@ -87,21 +109,25 @@
       }
 
       .stat-value {
+        font-family: 'JetBrains Mono', monospace;
         font-variant-numeric: tabular-nums;
-        color: #6e7681;
+        color: var(--ink-soft);
         font-weight: 500;
+        font-size: 12px;
       }
 
       .stat-label {
         font-size: 10px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        color: var(--ink-faint);
       }
 
       .progress-bar {
         flex-shrink: 0;
-        height: 3px;
-        background: #161b22;
+        height: 4px;
+        background: var(--border);
         border-radius: 2px;
         margin-bottom: 12px;
         overflow: hidden;
@@ -109,7 +135,7 @@
 
       .progress-fill {
         height: 100%;
-        background: linear-gradient(90deg, #006d32, #26a641, #39d353);
+        background: linear-gradient(90deg, var(--green), #6a9f6e, var(--accent));
         border-radius: 2px;
         transition: width 1s ease;
       }
@@ -135,13 +161,13 @@
       }
 
       .day.today {
-        background: #f0883e;
+        background: var(--accent);
         border-radius: 1px;
-        box-shadow: 0 0 4px #f0883e88;
+        box-shadow: 0 0 4px rgba(212, 98, 43, 0.45);
       }
 
       .day.remaining {
-        background: #161b22;
+        background: var(--border);
       }
 
       .age-markers {
@@ -149,7 +175,8 @@
         display: flex;
         justify-content: space-between;
         font-size: 10px;
-        color: #484f58;
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--ink-faint);
         margin-top: 6px;
         padding: 0 2px;
       }
@@ -162,12 +189,6 @@
           width: 100%;
           justify-content: center;
         }
-        #grid {
-          display: grid;
-          gap: 1px;
-          width: 100%;
-          height: 100%;
-        }
       }
     </style>
   </head>
@@ -178,6 +199,8 @@
         <button data-mode="from40" id="btnFrom40">—</button>
         <button data-mode="decade" id="btnDecade">—</button>
         <button data-mode="birthday" id="btnBirthday">—</button>
+        <button data-mode="month" id="btnMonth">—</button>
+        <button data-mode="week" id="btnWeek">—</button>
       </div>
       <div class="stats">
         <div class="stat">
@@ -226,35 +249,35 @@
       }
       // ────────────
 
-      // Decade colors — alternating green hues for elapsed days
+      // Decade colors — warm earthy greens for elapsed days
       const DECADE_COLORS = {
-        0:  "#064e1a",
-        10: "#0a6b26",
-        20: "#0e8530",
-        30: "#16a43a",
-        40: "#26c244",
-        50: "#39d353",
-        60: "#57db6b",
-        70: "#7ee88a",
-        80: "#a0f0a8",
-        90: "#c8f7cc",
+        0:  "#3d6b4e",
+        10: "#4a7c59",
+        20: "#578d64",
+        30: "#659e70",
+        40: "#74af7d",
+        50: "#85bf8b",
+        60: "#97cf9b",
+        70: "#aadcab",
+        80: "#bee8bd",
+        90: "#d4f1d2",
       };
 
-      // Remaining day colors per decade — subtle dark variations
+      // Remaining day colors per decade — warm beige/tan variations
       const DECADE_REMAINING = {
-        0:  "#0a120c",
-        10: "#0f1a14",
-        20: "#14221c",
-        30: "#1a2c24",
-        40: "#20362e",
-        50: "#264038",
-        60: "#2e4c42",
-        70: "#36584e",
-        80: "#3e645a",
-        90: "#467066",
+        0:  "#e4ddd5",
+        10: "#e2dad1",
+        20: "#dfd6cc",
+        30: "#dcd2c7",
+        40: "#d9cec2",
+        50: "#d6cabd",
+        60: "#d3c6b8",
+        70: "#d0c2b3",
+        80: "#cdbeae",
+        90: "#cabaa9",
       };
 
-      const VALID_MODES = ["whole", "from40", "decade", "birthday"];
+      const VALID_MODES = ["whole", "from40", "decade", "birthday", "month", "week"];
       const savedMode = params.get("mode");
       let currentMode = VALID_MODES.includes(savedMode) ? savedMode : "whole";
 
@@ -285,18 +308,29 @@
           const age = getCurrentAge();
           const lastBirthday = addYears(BIRTH, age);
           const nextBirthday = addYears(BIRTH, age + 1);
-          // If last birthday is in the future (hasn't happened yet this year), step back
           if (lastBirthday > now) {
             return { start: addYears(BIRTH, age - 1), end: lastBirthday, total: daysBetween(addYears(BIRTH, age - 1), lastBirthday) };
           }
           return { start: lastBirthday, end: nextBirthday, total: daysBetween(lastBirthday, nextBirthday) };
+        }
+        if (currentMode === "month") {
+          const now = new Date();
+          const start = new Date(now.getFullYear(), now.getMonth(), 1);
+          const end = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+          return { start, end, total: daysBetween(start, end) };
+        }
+        if (currentMode === "week") {
+          const now = new Date();
+          const day = now.getDay(); // 0=Sun
+          const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() - day);
+          const end = new Date(start.getTime() + 7 * 86400000);
+          return { start, end, total: 7 };
         }
         const start = currentMode === "whole" ? BIRTH : addYears(BIRTH, AGE_FROM);
         const end = addYears(BIRTH, AGE_END);
         return { start, end, total: daysBetween(start, end) };
       }
 
-      // For a given day index, find which decade it belongs to
       function getDecadeForDay(dayIndex, rangeStart) {
         const dayDate = new Date(rangeStart.getTime() + dayIndex * 86400000);
         const ageMs = dayDate - BIRTH;
@@ -307,7 +341,6 @@
 
       let days = [];
 
-      // Set active button from saved mode
       document.querySelectorAll("#toggle button").forEach((b) => {
         b.classList.toggle("active", b.dataset.mode === currentMode);
       });
@@ -339,7 +372,6 @@
         grid.innerHTML = "";
         days = [];
 
-        // Pre-compute decade boundaries as day indices
         const decadeDays = [];
         for (let dec = 0; dec <= 90; dec += 10) {
           decadeDays.push({
@@ -352,7 +384,6 @@
         for (let i = 0; i < total; i++) {
           const el = document.createElement("div");
           el.className = "day";
-          // Find decade for this day
           let decade = 0;
           for (const d of decadeDays) {
             if (i >= d.startDay && i < d.endDay) {
@@ -381,11 +412,15 @@
 
         const age = getCurrentAge();
         const decade = Math.floor(age / 10) * 10;
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const labels = {
           whole: "0 → " + AGE_END,
           from40: AGE_FROM + " → " + AGE_END,
           decade: decade + "'s",
           birthday: age + " → " + (age + 1),
+          month: monthNames[now.getMonth()] + " " + now.getFullYear(),
+          week: "This week",
         };
         document.getElementById("viewLabel").textContent = labels[currentMode];
         document.getElementById("elapsed").textContent = Math.max(
@@ -424,10 +459,14 @@
       function updateLabels() {
         const age = getCurrentAge();
         const decade = Math.floor(age / 10) * 10;
+        const now = new Date();
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         document.getElementById("btnWhole").textContent = "0 → " + AGE_END;
         document.getElementById("btnFrom40").textContent = AGE_FROM + " → " + AGE_END;
         document.getElementById("btnDecade").textContent = decade + "'s";
         document.getElementById("btnBirthday").textContent = age + " → " + (age + 1);
+        document.getElementById("btnMonth").textContent = monthNames[now.getMonth()];
+        document.getElementById("btnWeek").textContent = "Week";
       }
 
       updateURL();
